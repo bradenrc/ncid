@@ -50,7 +50,7 @@ while True:
         last_line = logfile_c.count("\n")
         lines = logfile_c.split("\n")
 
-        new_call = lines[last_line + 1]
+        new_call = lines[last_line - 1]
         print new_call
 
         new_call_items = new_call.split("*")
