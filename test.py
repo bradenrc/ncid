@@ -3,6 +3,7 @@ import os
 import time
 import urllib2
 import json
+import requests
 
 clients = ["10.0.0.125", "10.0.0.119"]
 file = "/var/log/cidcall.log"
@@ -24,7 +25,9 @@ def notify_kodi(name, number):
 
     # send a Sonos notification
     sonos_url = "http://10.0.0.120:5005/Family Room/sayall/Incoming Call from {}/en-us/20".format(message)
-    sonos_url = urllib2.quote(sonos_url)
+    response = requests.get(sonos_url)
+    print response
+
 
     print sonos_url
     urllib2.urlopen(sonos_url)
