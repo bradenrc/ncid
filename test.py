@@ -23,7 +23,7 @@ def notify_kodi(name, number):
     data = {'params': {'message': message, 'title': 'Call From:'}, 'jsonrpc': '2.0', 'id': 1, 'method': 'GUI.ShowNotification'}
 
     # send a Sonos notification
-    sonos_url = "http://10.0.0.120:5005/Family Room/sayall/Incoming Call from {}/en-us/25".format(message)
+    sonos_url = "http://10.0.0.120:5005/Family Room/sayall/Incoming Call from {}/en-us/20".format(message)
     sonos_url = urllib2.quote(sonos_url)
 
     print sonos_url
