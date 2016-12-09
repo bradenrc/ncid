@@ -22,6 +22,11 @@ def notify_kodi(name, number):
     message = "{} {}".format(name, format_number(number))
     data = {'params': {'message': message, 'title': 'Call From:'}, 'jsonrpc': '2.0', 'id': 1, 'method': 'GUI.ShowNotification'}
 
+    # send a Sonos notification
+    sonos_url = "http://10.0.0.120:5005/Family Room/sayall/Incoming Call from {}/en-us/25".format(message)
+    print sonos_url
+    urllib2.urlopen(sonos_url)
+
     for client in clients:
         try:
             url = "http://" + client + ":8080/jsonrpc"
@@ -30,18 +35,13 @@ def notify_kodi(name, number):
             #print
             urllib2.urlopen(req, json.dumps(data))
 
-            #now send a Sonos notification
-            sonos_url = "http://10.0.0.120:5005/Family Room/sayall/Incoming Call from {}/en-us/25".format(message)
-            print sonos_url
-            urllib2.urlopen(sonos_url)
-
         except:
             print "error: ", client
 
 mod_time = os.path.getmtime(file)
 
 while True:
-    if mod_time < os.path.getmtime(file):
+    if mod_time <= os.path.getmtime(file):
         mod_time = os.path.getmtime(file)
 
         logfile = open(file, "r")
