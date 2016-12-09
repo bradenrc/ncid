@@ -29,6 +29,11 @@ def notify_kodi(name, number):
             req.add_header('Content-Type', 'application/json')
             #print
             urllib2.urlopen(req, json.dumps(data))
+
+            #now send a Sonos notification
+            sonos_url = "http://10.0.0.120:5005/Family Room/sayall/Incoming Call from {}/en-us/25".format(message)
+            urllib2.urlopen(sonos_url)
+
         except:
             print "error: ", client
 
