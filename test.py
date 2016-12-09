@@ -40,6 +40,7 @@ def notify_kodi(name, number):
 
 mod_time = os.path.getmtime(file)
 
+#push
 while True:
     if mod_time <= os.path.getmtime(file):
         mod_time = os.path.getmtime(file)
